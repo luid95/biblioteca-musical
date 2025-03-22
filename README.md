@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# 🎵 Biblioteca Musical
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación básica en **React** que simula una biblioteca musical. Permite visualizar una lista de canciones con información como el título, el artista y la duración.
 
-## Available Scripts
+## 📚 Características
+- Estructura basada en **componentes de clase**.
+- Implementación del **ciclo de vida de React** con `componentDidMount()`.
 
-In the project directory, you can run:
+## 🗒️ Tecnologías utilizadas
+- React
 
-### `npm start`
+## 🛠️ Instalación y uso
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clona este repositorio:
+   ```sh
+   git clone https://github.com/TU_USUARIO/biblioteca-musical.git
+   ```
+2. Ingresa al directorio del proyecto:
+   ```sh
+   cd biblioteca-musical
+   ```
+3. Instala las dependencias:
+   ```sh
+   npm install
+   ```
+4. Inicia la aplicación:
+   ```sh
+   npm start
+   ```
+5. Abre en tu navegador: [http://localhost:3000](http://localhost:3000)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📚 Estructura del proyecto
+```
+  biblioteca-musical/
+  ├── node_modules/
+  ├── public/
+  ├── src/
+  │   ├── components/
+  │   │   ├── Header.js
+  │   │   └── Song.js
+  │   ├── App.js
+  │   ├── App.css
+  │   └── index.js
+  ├── .gitignore
+  ├── package.json
+  └── README.md
+```
 
-### `npm test`
+## 🎧 Funcionalidad de los componentes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Header.js**
+Muestra el título principal de la aplicación.
 
-### `npm run build`
+### **Song.js**
+Muestra los detalles de cada canción como:
+- 🎧 Nombre de la canción
+- 🎤 Artista
+- 🕒 Duración
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **App.js**
+- Contiene la estructura principal de la aplicación.
+- Importa y muestra los componentes `Header` y `Song`.
+- Implementa el método `componentDidMount()` para mostrar un mensaje en la consola cuando la app se ha cargado correctamente.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📅 Licencia
+Este proyecto se encuentra bajo la licencia MIT. 🌍
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
