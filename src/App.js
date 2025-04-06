@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
+import SongDetail from "./components/SongDetail";
 import Library from "./components/Library";
 
 import "./styles.css";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   const [songs] = useState([
@@ -25,10 +27,18 @@ const App = () => {
   return (
     <div className="app">
       <Header title="🎵 Biblioteca Musical 🎵" />
-      <div className="songs-list">
-        <SearchResults songs={songs} onAdd={addToLibrary} />
-        <Library library={library} />
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="main-content">
+              <SearchResults songs={songs} onAdd={addToLibrary} />
+              <Library library={library} />
+            </div>
+          }
+        />
+        <Route path="/song/:id" element={<SongDetail />} />
+      </Routes>
     </div>
   );
 };

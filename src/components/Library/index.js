@@ -12,10 +12,10 @@ const Library = (props) => {
         {library.length > 0 ? (
           library.map((song) => (
             <Song
-              key={song.id}
-              title={song.title}
-              artist={song.artist}
-              duration={song.duration}
+              key={song.idAlbum}
+              title={song.strAlbum}
+              artist={song.strArtist}
+              duration={song.intYearReleased}
             />
           ))
         ) : (

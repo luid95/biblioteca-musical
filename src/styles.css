@@ -1,3 +1,8 @@
+/* ----------- Estilos Globales ----------- */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -5,10 +10,34 @@ body {
   background-color: #fafafa;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .app {
   padding: 0 20px;
+}
+
+/* HEADER */
+header {
+  background-color: #1db954;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
+
+/* MAIN LAYOUT */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .main-content > section {
+    flex: 1 1 48%;
+  }
 }
