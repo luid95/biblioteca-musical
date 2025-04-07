@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-const SearchBar = ({ setSearchTerm }) => {
-  const [input, setInput] = useState("");
+const SearchBar = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchTerm(input.trim());
+    if (searchTerm.trim() !== "") {
+      onSearch(searchTerm); // Llama a la función que maneja la búsqueda
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="search-bar">
+    <form className="searchbar-form" onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Busca un artista..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        className="searchbar-input"
+        placeholder="Buscar artista..."
+        value={searchTerm}
+        onChange={handleInputChange}
       />
-      <button type="submit">Buscar</button>
+      <button type="submit" className="searchbar-button">
+        Buscar
+      </button>
     </form>
   );
 };

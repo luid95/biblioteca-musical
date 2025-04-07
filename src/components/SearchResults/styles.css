@@ -1,5 +1,4 @@
 /* SearchResults */
-
 .songs-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7,8 +6,8 @@
   margin-top: 1rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .songs-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
   }
 }
