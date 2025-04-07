@@ -47,6 +47,7 @@ const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
               title={song.strAlbum}
               artist={song.strArtist}
               duration={song.intYearReleased}
+              album={song}
               onAdd={() => onAdd(song)}
             />
           ))}

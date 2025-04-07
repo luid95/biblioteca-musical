@@ -1,14 +1,16 @@
 import React from "react";
 
 import "./styles.css";
+import { Link } from "react-router-dom";
 
-const Song = (props) => {
-  const { title, artist, duration, onAdd } = props;
+const Song = ({ title, artist, duration, onAdd, album }) => {
   return (
-    <div className="song">
-      <h3>{title}</h3>
-      <p>🎤 {artist}</p>
-      <p>⏳ {duration}</p>
+    <div className="song-card">
+      <Link to={`/song/${album.idAlbum}`} state={{ album }}>
+        <h4>{title}</h4>
+        <p>{artist}</p>
+        <p>{duration}</p>
+      </Link>
       {onAdd && <button onClick={onAdd}>Agregar a mi biblioteca</button>}
     </div>
   );
