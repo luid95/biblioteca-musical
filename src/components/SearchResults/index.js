@@ -4,35 +4,42 @@ import useFetch from "../../hooks/useFetch";
 
 import "./styles.css";
 
-const SearchResults = (props) => {
-  const { searchTerm, onAdd, loading, error, setLoading, setError } = props;
-
+const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
   const url = searchTerm
     ? `https://www.theaudiodb.com/api/v1/json/2/searchalbum.php?s=${encodeURIComponent(
         searchTerm
       )}`
     : null;
 
-  const { data, loading: apiLoading, error: apiError } = useFetch(url);
+  const { data, loading, error, refetch } = useFetch(url);
 
   useEffect(() => {
-    setLoading(apiLoading);
-    setError(apiError);
-  }, [apiLoading, apiError, setLoading, setError]);
-
-  console.log("data", data);
-  if (loading) return <p>Cargando álbumes...</p>;
-  if (error) return <p>❌ Error: {error}</p>;
-  if (!data?.album) return <p>No se encontraron álbumes para "{searchTerm}"</p>;
+    setLoading(loading);
+    setError(error);
+  }, [loading, error, setLoading, setError]);
 
   const fetchedAlbums = data?.album || [];
 
   return (
-    <section>
+    <section className="search-results">
       <h3>📀 Álbumes encontrados en TheAudioDB</h3>
 
-      {/* 🎧 Álbumes reales desde la API */}
-      {fetchedAlbums.length > 0 ? (
+      {loading && <p className="status-msg">⏳ Cargando álbumes...</p>}
+
+      {error && (
+        <div className="status-msg error">
+          <p>❌ Hubo un problema al cargar los datos: {error}</p>
+          <button onClick={refetch}>🔄 Reintentar</button>
+        </div>
+      )}
+
+      {!loading && !error && fetchedAlbums.length === 0 && searchTerm && (
+        <p className="status-msg">
+          No se encontraron álbumes para "{searchTerm}"
+        </p>
+      )}
+
+      {!loading && !error && fetchedAlbums.length > 0 ? (
         <div className="songs-list">
           {fetchedAlbums.map((song) => (
             <Song
@@ -45,7 +52,9 @@ const SearchResults = (props) => {
           ))}
         </div>
       ) : (
-        <p>Tu busqueda está vacía.</p>
+        <p className="status-msg">
+          !!No se encontraron álbumes para "{searchTerm}"
+        </p>
       )}
     </section>
   );
