@@ -7,8 +7,6 @@ const SongDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const album = location.state?.album;
-  console.log("album");
-  console.log(album);
 
   if (!album) {
     return (

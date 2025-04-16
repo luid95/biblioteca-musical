@@ -3,19 +3,19 @@ import Song from "../Song";
 
 import "./styles.css";
 
-const Library = (props) => {
-  const { library } = props;
+const Library = ({ library }) => {
   return (
     <section>
       <h2>📚 Mi Biblioteca</h2>
       <div className="library-list">
         {library.length > 0 ? (
-          library.map((song) => (
+          library.map((album) => (
             <Song
-              key={song.idAlbum}
-              title={song.strAlbum}
-              artist={song.strArtist}
-              duration={song.intYearReleased}
+              key={album.idAlbum}
+              title={album.strAlbum}
+              artist={album.strArtist}
+              duration={album.intYearReleased}
+              album={album}
             />
           ))
         ) : (
