@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import SongDetail from "./components/SongDetail";
 import Library from "./components/Library";
 
-import "./styles.css";
-import { Route, Routes } from "react-router-dom";
-
 const App = () => {
+  const location = useLocation();
+
   const [library, setLibrary] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); // Termino de busqueda
   const [loading, setLoading] = useState(false); // Estado de carga
@@ -30,9 +31,11 @@ const App = () => {
   return (
     <div className="app">
       <Header title="🎵 Biblioteca Musical 🎵" />
-      <div className="content-search">
-        <SearchBar onSearch={handleSearch} />
-      </div>
+      {!location.pathname.startsWith("/song/") && (
+        <div className="content-search">
+          <SearchBar onSearch={handleSearch} />
+        </div>
+      )}
       <Routes>
         <Route
           path="/"

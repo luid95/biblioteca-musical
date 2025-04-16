@@ -1,6 +1,12 @@
 import React from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import "./styles.css";
+import {
+  Container,
+  Info,
+  BackButton,
+  ImageContainer,
+  ErrorMsg,
+} from "./SongDetail.styles";
 
 const SongDetail = () => {
   const { id } = useParams();
@@ -9,14 +15,12 @@ const SongDetail = () => {
   const album = location.state?.album;
 
   if (!album) {
-    return (
-      <p className="error-msg">No hay información disponible del álbum.</p>
-    );
+    return <ErrorMsg>No hay información disponible del álbum.</ErrorMsg>;
   }
 
   return (
-    <div className="song-detail-container">
-      <div className="song-detail-info">
+    <Container>
+      <Info>
         <h2>🎵 Detalles del Álbum</h2>
         <p>
           <strong>ID:</strong> {id}
@@ -36,19 +40,17 @@ const SongDetail = () => {
         <p>
           <strong>Descripcion:</strong> {album.strDescriptionPT}
         </p>
-        <button onClick={() => navigate(-1)} className="back-button">
-          🔙 Volver
-        </button>
-      </div>
+        <BackButton onClick={() => navigate(-1)}>🔙 Volver</BackButton>
+      </Info>
 
-      <div className="song-detail-image">
+      <ImageContainer>
         {album.strAlbumThumb ? (
           <img src={album.strAlbumThumb} alt={`Portada de ${album.strAlbum}`} />
         ) : (
           <p>Sin imagen disponible</p>
         )}
-      </div>
-    </div>
+      </ImageContainer>
+    </Container>
   );
 };
 

@@ -1,18 +1,16 @@
 import React from "react";
-
-import "./styles.css";
-import { Link } from "react-router-dom";
+import { SongCard, StyledLink, AddButton } from "./Song.styles";
 
 const Song = ({ title, artist, duration, onAdd, album }) => {
   return (
-    <div className="song-card">
-      <Link to={`/song/${album.idAlbum}`} state={{ album }}>
+    <SongCard>
+      <StyledLink to={`/song/${album.idAlbum}`} state={{ album }}>
         <h4>{title}</h4>
         <p>{artist}</p>
         <p>{duration}</p>
-      </Link>
-      {onAdd && <button onClick={onAdd}>Agregar a mi biblioteca</button>}
-    </div>
+      </StyledLink>
+      {onAdd && <AddButton onClick={onAdd}>Agregar a mi biblioteca</AddButton>}
+    </SongCard>
   );
 };
 

@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
 import Song from "../Song";
 import useFetch from "../../hooks/useFetch";
-
-import "./styles.css";
+import {
+  ResultsSection,
+  Title,
+  SongsGrid,
+  StatusMessage,
+  RetryButton,
+} from "./SearchResults.styles";
 
 const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
   const url = searchTerm
@@ -21,26 +26,27 @@ const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
   const fetchedAlbums = data?.album || [];
 
   return (
-    <section className="search-results">
-      <h3>📀 Álbumes encontrados en TheAudioDB</h3>
+    <ResultsSection>
+      <Title>📀 Álbumes encontrados en TheAudioDB</Title>
 
-      {loading && <p className="status-msg">⏳ Cargando álbumes...</p>}
+      {loading && <StatusMessage>⏳ Cargando álbumes...</StatusMessage>}
 
       {error && (
-        <div className="status-msg error">
-          <p>❌ Hubo un problema al cargar los datos: {error}</p>
-          <button onClick={refetch}>🔄 Reintentar</button>
-        </div>
+        <StatusMessage error>
+          ❌ Hubo un problema al cargar los datos: {error}
+          <br />
+          <RetryButton onClick={refetch}>🔄 Reintentar</RetryButton>
+        </StatusMessage>
       )}
 
       {!loading && !error && fetchedAlbums.length === 0 && searchTerm && (
-        <p className="status-msg">
+        <StatusMessage>
           No se encontraron álbumes para "{searchTerm}"
-        </p>
+        </StatusMessage>
       )}
 
       {!loading && !error && fetchedAlbums.length > 0 ? (
-        <div className="songs-list">
+        <SongsGrid>
           {fetchedAlbums.map((song) => (
             <Song
               key={song.idAlbum}
@@ -51,13 +57,13 @@ const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
               onAdd={() => onAdd(song)}
             />
           ))}
-        </div>
+        </SongsGrid>
       ) : (
-        <p className="status-msg">
+        <StatusMessage>
           !!No se encontraron álbumes para "{searchTerm}"
-        </p>
+        </StatusMessage>
       )}
-    </section>
+    </ResultsSection>
   );
 };
 

@@ -1,13 +1,12 @@
 import React from "react";
+//import "./styles.css";
+import { HeaderWrapper, Title } from "./Header.styles";
 
-import "./styles.css";
-
-const Header = (props) => {
-  const { title } = props;
+const Header = ({ title }) => {
   return (
-    <header className="header">
-      <h1>{title}</h1>
-    </header>
+    <HeaderWrapper>
+      <Title>{title}</Title>
+    </HeaderWrapper>
   );
 };
 

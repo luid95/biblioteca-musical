@@ -1,13 +1,12 @@
 import React from "react";
 import Song from "../Song";
-
-import "./styles.css";
+import { LibraryWrapper, LibraryList } from "./Library.styles";
 
 const Library = ({ library }) => {
   return (
-    <section>
+    <LibraryWrapper>
       <h2>📚 Mi Biblioteca</h2>
-      <div className="library-list">
+      <LibraryList>
         {library.length > 0 ? (
           library.map((album) => (
             <Song
@@ -21,8 +20,8 @@ const Library = ({ library }) => {
         ) : (
           <p>Tu biblioteca está vacía.</p>
         )}
-      </div>
-    </section>
+      </LibraryList>
+    </LibraryWrapper>
   );
 };
 
