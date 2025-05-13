@@ -9,7 +9,13 @@ import {
   RetryButton,
 } from "./SearchResults.styles";
 
-const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
+// Redux
+import { useDispatch } from "react-redux";
+import { addSong } from "../../redux/libraryActions";
+
+const SearchResults = ({ searchTerm, setLoading, setError }) => {
+  const dispatch = useDispatch();
+
   const url = searchTerm
     ? `https://www.theaudiodb.com/api/v1/json/2/searchalbum.php?s=${encodeURIComponent(
         searchTerm
@@ -25,10 +31,20 @@ const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
 
   const fetchedAlbums = data?.album || [];
 
+  const handleAdd = (album) => {
+    const songData = {
+      id: album.idAlbum,
+      title: album.strAlbum,
+      artist: album.strArtist,
+      album: album.strAlbum,
+      duration: album.intYearReleased,
+    };
+    dispatch(addSong(songData));
+  };
+
   return (
     <ResultsSection>
       <Title>📀 Álbumes encontrados en TheAudioDB</Title>
-
       {loading && <StatusMessage>⏳ Cargando álbumes...</StatusMessage>}
 
       {error && (
@@ -47,14 +63,14 @@ const SearchResults = ({ searchTerm, onAdd, setLoading, setError }) => {
 
       {!loading && !error && fetchedAlbums.length > 0 ? (
         <SongsGrid>
-          {fetchedAlbums.map((song) => (
+          {fetchedAlbums.map((album) => (
             <Song
-              key={song.idAlbum}
-              title={song.strAlbum}
-              artist={song.strArtist}
-              duration={song.intYearReleased}
-              album={song}
-              onAdd={() => onAdd(song)}
+              key={album.idAlbum}
+              title={album.strAlbum}
+              artist={album.strArtist}
+              duration={album.intYearReleased}
+              album={album}
+              onAdd={() => handleAdd(album)}
             />
           ))}
         </SongsGrid>

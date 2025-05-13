@@ -1,21 +1,34 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeSong } from "../../redux/libraryActions";
 import Song from "../Song";
-import { LibraryWrapper, LibraryList } from "./Library.styles";
+import { LibraryWrapper, LibraryList, RemoveButton } from "./Library.styles";
 
-const Library = ({ library }) => {
+const Library = () => {
+  const dispatch = useDispatch();
+  const library = useSelector((state) => state.library);
+
+  const handleRemove = (songId) => {
+    dispatch(removeSong(songId)); // dispatch para la acción removeSong pasando el ID de la canción
+  };
+
   return (
     <LibraryWrapper>
       <h2>📚 Mi Biblioteca</h2>
       <LibraryList>
         {library.length > 0 ? (
           library.map((album) => (
-            <Song
-              key={album.idAlbum}
-              title={album.strAlbum}
-              artist={album.strArtist}
-              duration={album.intYearReleased}
-              album={album}
-            />
+            <div key={album.id}>
+              <Song
+                title={album.title}
+                artist={album.artist}
+                duration={album.duration}
+                album={album}
+              />
+              <RemoveButton onClick={() => handleRemove(album.id)}>
+                Eliminar
+              </RemoveButton>
+            </div>
           ))
         ) : (
           <p>Tu biblioteca está vacía.</p>

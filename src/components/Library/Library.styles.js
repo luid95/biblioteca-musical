@@ -33,3 +33,22 @@ export const LibraryList = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
+export const RemoveButton = styled.button`
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darkred;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -10,7 +10,6 @@ import Library from "./components/Library";
 const App = () => {
   const location = useLocation();
 
-  const [library, setLibrary] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); // Termino de busqueda
   const [loading, setLoading] = useState(false); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
@@ -19,14 +18,6 @@ const App = () => {
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
-
-  const addToLibrary = (song) => {
-    setLibrary((prevLibrary) => [...prevLibrary, song]);
-  };
-
-  useEffect(() => {
-    console.log("📢 La biblioteca se ha actualizado:", library);
-  }, [library]);
 
   return (
     <div className="app">
@@ -43,13 +34,12 @@ const App = () => {
             <div className="main-content">
               <SearchResults
                 searchTerm={searchTerm}
-                onAdd={addToLibrary}
                 loading={loading}
                 error={error}
                 setLoading={setLoading}
                 setError={setError}
               />
-              <Library library={library} />
+              <Library />
             </div>
           }
         />
