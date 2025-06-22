@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchSongs } from "../../redux/slices/searchSlice";
 import { SearchForm, SearchInput, SearchButton } from "./SearchBar.styles";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (e) => {
@@ -11,7 +14,7 @@ const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
-      onSearch(searchTerm); // Llama a la función que maneja la búsqueda
+      dispatch(fetchSongs(searchTerm));
     }
   };
 

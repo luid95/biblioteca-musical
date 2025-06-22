@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+
+// Redux Toolkit
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSongs, resetResults } from "./redux/slices/searchSlice";
 
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
@@ -9,14 +13,18 @@ import Library from "./components/Library";
 
 const App = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
 
-  const [searchTerm, setSearchTerm] = useState(""); // Termino de busqueda
-  const [loading, setLoading] = useState(false); // Estado de carga
-  const [error, setError] = useState(null); // Estado de error
+  // Leer estados de búsqueda desde Redux
+  const { results, loading, error } = useSelector((state) => state.search);
 
-  //Funcion que captura termino a buscar(artista)
+  // Función para buscar
   const handleSearch = (term) => {
-    setSearchTerm(term);
+    if (term.trim() === "") {
+      dispatch(resetResults());
+      return;
+    }
+    dispatch(fetchSongs(term));
   };
 
   return (
@@ -33,11 +41,10 @@ const App = () => {
           element={
             <div className="main-content">
               <SearchResults
-                searchTerm={searchTerm}
+                searchTerm={null}
                 loading={loading}
                 error={error}
-                setLoading={setLoading}
-                setError={setError}
+                results={results}
               />
               <Library />
             </div>

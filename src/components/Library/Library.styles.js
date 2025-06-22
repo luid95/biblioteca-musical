@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const LibraryWrapper = styled.section`
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
   h2 {
     margin-bottom: 1rem;
   }

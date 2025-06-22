@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeSong } from "../../redux/libraryActions";
+import { removeSong } from "../../redux/slices/librarySlice";
 import Song from "../Song";
 import { LibraryWrapper, LibraryList, RemoveButton } from "./Library.styles";
 

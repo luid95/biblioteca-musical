@@ -7,6 +7,10 @@ export const SearchForm = styled.form`
   max-width: 600px;
   padding: 1rem;
   gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 `;
 
 export const SearchInput = styled.input`
